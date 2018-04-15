@@ -12,6 +12,18 @@ var users = require('./routes/users');
 
 var app = express();
 
+//connect to MongoDB
+mongoose.connect('mongodb://localhost/yourChef');
+var db = mongoose.connection;
+
+//handle mongo error
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log("Connected to mongodb");
+  // we're connected!
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
