@@ -1,0 +1,18 @@
+extends layout
+
+block head
+  script(defer type='text/javascript', src='/javascripts/register.js')
+
+block content
+  div#register.container(style="max-width: 600px")
+    form
+      div.form-group
+        label(for="name") Name
+        input#name.form-control(name="name" type="name")
+      div.form-group
+        label(for="email") Email
+        input#email.form-control(name="email" type="email")
+      div.form-group
+        label(for="#password") Password
+        input#password.form-control(name="password" type="password")
+      input(type="submit" value="Register")
