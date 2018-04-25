@@ -43,6 +43,7 @@ userSchema.methods.generateJwt = function() {
     // profilePicture: this.profilePicture,
     role: this.role,
     // isFacebookUser: this.isFacebookUser,
+    permissions: ['USER'],
     expiration: parseInt(expired.getTime() / 1000, 10)
   }, process.env.JWT_PASSWORD);
 };

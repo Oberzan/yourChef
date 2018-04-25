@@ -52,9 +52,12 @@ exports.authenticate = (req, res) => {
             return;
         }
         if(user) {
-            res.status(200).json({
-              token: user.generateJwt()
-            });
+            let token = user.generateJwt();
+            res.status(200)
+               .cookie('token', token)
+               .json({
+                 token: token
+               });
         } else {
             res.status(401).json(data);
         }

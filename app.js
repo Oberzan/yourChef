@@ -7,6 +7,7 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let passport = require('passport');
+const jwt = require('express-jwt');
 
 const mongoose = require('mongoose');
 
@@ -49,6 +50,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(passport.initialize());
+
+app.use(
+  jwt({
+    secret: process.env.JWT_PASSWORD,
+    credentialsRequired: false,
+    getToken: req => req.cookies.token 
+  })
+);
 
 app.use('/', index);
 
